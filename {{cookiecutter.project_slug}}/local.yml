@@ -1,0 +1,38 @@
+version: "3"
+
+volumes:
+  postgres_data: {}
+
+services:
+  client:
+    build:
+      context: .
+      dockerfile: ./ops/client/Dockerfile
+    ports:
+      - "8080:8080"
+    env_file: ./ops/client/.env
+
+  server:
+    build:
+      context: .
+      dockerfile: ./ops/server/Dockerfile
+    depends_on:
+      - database
+    volumes:
+      - ./server:/app
+    ports:
+      - "8000:8000"
+    command: /start.sh
+    entrypoint: /entrypoint.sh
+    restart: on-failure
+    env_file: ./ops/server/.env
+
+  database:
+    image: postgres:14-alpine
+    env_file: ./ops/database/.env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    expose:
+      - 5432

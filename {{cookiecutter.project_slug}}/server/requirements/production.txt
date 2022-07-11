@@ -1,0 +1,17 @@
+-r base.txt
+
+gunicorn==20.1.0  # https://github.com/benoitc/gunicorn
+psycopg2==2.9.3  # https://github.com/psycopg/psycopg2
+
+# Django
+# ------------------------------------------------------------------------------
+{%- if cookiecutter.cloud_provider == 'AWS'%}
+django-storages[boto3]==1.12.3  # https://github.com/jschneier/django-storages
+
+# django-anymail[mailgun]==8.6  # https://github.com/anymail/django-anymail
+# django-anymail[mandrill]==8.6  # https://github.com/anymail/django-anymail
+# django-anymail[postmark]==8.6  # https://github.com/anymail/django-anymail
+# django-anymail[sendgrid]==8.6  # https://github.com/anymail/django-anymail
+# django-anymail[sendinblue]==8.6  # https://github.com/anymail/django-anymail
+django-anymail[sparkpost]==8.6  # https://github.com/anymail/django-anymail
+# django-anymail==8.6  # https://github.com/anymail/django-anymail

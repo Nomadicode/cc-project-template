@@ -1,0 +1,30 @@
+{
+    "project_name": "Nomadicode Project",
+    "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_')|replace('.', '_')|trim() }}",
+    "version": "0.0.1",
+    "description": "Nomadicode Project",
+    "domain_name": "nomadicode.com",
+    "author": "Nomadicode Dev Team",
+    "email": "dev@nomadicode.com",
+    "include_client": "y",
+    "include_server": "y",
+    "timezone": "UTC",
+    "cloud_provider": [
+        "AWS",
+        "GCP",
+        "Digital Ocean"
+    ],
+    "mail_service": [
+        "Mailgun",
+        "Mandrill",
+        "Sendgrid",
+        "SendinBlue",
+        "Sparkpost",
+        "None"
+    ],
+    "use_rest": "y",
+    "use_graphql": "y",
+    "use_redis": "n",
+    "use_standalone_prod_db": "n",
+    "use_i18n": "y",
+}
