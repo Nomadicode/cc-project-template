@@ -4,6 +4,7 @@ volumes:
   postgres_data: {}
 
 services:
+  {%- if cookiecutter.include_client == 'y' %}
   client:
     build:
       context: .
@@ -11,7 +12,9 @@ services:
     ports:
       - "8080:8080"
     env_file: ./ops/client/.env
+  {%- endif %}
 
+  {%- if cookiecutter.include_server == 'y' %}
   server:
     build:
       context: .
@@ -36,3 +39,4 @@ services:
       - "5432:5432"
     expose:
       - 5432
+  {%- endif %}

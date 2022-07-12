@@ -11,7 +11,7 @@ urlpatterns = [
     {%- if cookiecutter.use_graphql == 'y' %}
     path("graphql", csrf_exempt(GraphQLView.as_view(graphiql=True))),
     {%- endif %}
-    {%- cookiecutter.use_rest == 'y' %}
+    {%- if cookiecutter.use_rest == 'y' %}
     path(API_PREFIX, include("apps.users.routes")),
     {%- endif %}
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

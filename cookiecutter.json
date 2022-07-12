@@ -27,4 +27,9 @@
     "use_redis": "n",
     "use_standalone_prod_db": "n",
     "use_i18n": "y",
+    "_copy_without_render": [
+        "*.vue",
+        "*.html",
+        "*static"
+    ]
 }
