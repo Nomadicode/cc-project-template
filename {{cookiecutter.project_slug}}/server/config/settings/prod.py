@@ -2,8 +2,8 @@ from .base import *
 from .base import env
 
 SECRET_KEY = env("DJANGO_SECRET")
-DEBUG=env.bool("DEBUG", default=True)
-ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default="api.staging.watfurd.com,161.35.250.95")
+DEBUG=env.bool("DEBUG", default=False)
+ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default="")
 
 DATABASES["default"] = env.db("DATABASE_URL")
 DATABASES["default"]["ATOMIC_REQUESTS"] = True  # noqa F405
@@ -11,6 +11,7 @@ DATABASES["default"]["CONN_MAX_AGE"] = env.int("CONN_MAX_AGE", default=60)  # no
 
 # CACHES
 # ------------------------------------------------------------------------------
+{%- if cookiecutter.use_redis == 'y' %}
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
@@ -23,6 +24,7 @@ CACHES = {
         },
     }
 }
+{%- endif %}
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#csrf-cookie-secure
 CSRF_COOKIE_SECURE = True
