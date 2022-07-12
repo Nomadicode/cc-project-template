@@ -9,7 +9,6 @@ The server is set up with Django and provides
 
 * REST or GraphQL API
 * Internationalization (i18n)
-* 
 
 ## Client
 The server is build on the vue framework and provides:
