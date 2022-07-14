@@ -11,7 +11,7 @@ import os
 import shutil
 
 def remove_i18n_files():
-    shutil.rmtree("client/locales")
+    shutil.rmtree("client/src/locales")
 
 def remove_client_files():
     shutil.rmtree("client")

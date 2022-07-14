@@ -1,0 +1,56 @@
+@import "colors";
+
+@mixin btn-sizes() {
+    &.btn-xxs {
+        padding: 5px;
+        font-size: 0.8rem;
+    }
+    &.btn-sm {
+        padding: 8px 15px;
+    }
+    &.btn-md {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+    &.btn-lg {
+        padding: 12px 30px;
+        font-size: 1rem;
+    }
+}
+
+@mixin btn-colors() {
+    @each $name, $color in $component-colors {
+        &.btn-#{$name} {
+            background-color: $color;
+            border-color: $color;
+
+            &:hover {
+                cursor: pointer;
+                background-color: #{$color}CC;
+                border-color: #{$color}7F;
+            }
+        }
+
+        &.btn-outline.btn-#{$name} {
+            background-color: transparent;
+            color: $color;
+            border-color: $color;
+
+            &:hover {
+                cursor: pointer;
+                background-color: #{$color}55;
+                color: darken($color, 20%);
+            }
+        }
+        &.btn-link.btn-#{$name} {
+            background-color: transparent;
+            border: none;
+            color: $color;
+
+            &:hover {
+                background-color: #{$color}25;
+                color: darken($color, 20%);
+            }
+        }
+    }
+}
