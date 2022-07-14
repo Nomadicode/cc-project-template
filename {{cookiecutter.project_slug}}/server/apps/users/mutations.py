@@ -38,6 +38,7 @@ class UserCreateMutation(graphene.Mutation):
 
         return UserCreateMutation(success=True, error=None, user=user)
 
+
 class UserUpdateMutation(graphene.Mutation):
     class Arguments:
         pk = graphene.ID(required=True)

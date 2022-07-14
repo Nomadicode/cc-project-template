@@ -10,6 +10,8 @@ TODO: ? restrict Cookiecutter Django project initialization to Python 3.x enviro
 import os
 import shutil
 
+def remove_i18n_files():
+    shutil.rmtree("client/locales")
 
 def remove_client_files():
     shutil.rmtree("client")
@@ -57,6 +59,9 @@ def main():
 
     if "{{ cookiecutter.use_graphql }}".lower() == 'n':
         remove_graphql_files()
+
+    if "{{ cookiecutter.use_i18n }}".lower() == 'n':
+        remove_i18n_files()
 
 if __name__ == "__main__":
     main()
