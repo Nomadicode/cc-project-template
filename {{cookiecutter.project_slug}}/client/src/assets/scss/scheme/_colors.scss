@@ -1,0 +1,44 @@
+// Social Media
+$brand-amazon: #FF9900;
+$brand-bitcoin: #F7931A;
+$brand-facebook: #4267B2;
+$brand-google: #DB4437;
+$brand-instagram: #C13584;
+$brand-linkedin: #2867B2;
+$brand-pinterest: #BD081C;
+$brand-reddit: #FF4500;
+$brand-snapchat: #FFFC00;
+$brand-tiktok: #25F4EE;
+$brand-twitter: #1DA1F2;
+$brand-youtube: #FF0000;
+
+$brand-colors: (
+    'amazon': $brand-amazon,
+    'bitcoin': $brand-bitcoin,
+    'facebook': $brand-facebook,
+    'google': $brand-google,
+    'instagram': $brand-instagram,
+    'linkedin': $brand-linkedin,
+    'pinterest': $brand-pinterest,
+    'reddit': $brand-reddit,
+    'snapchat': $brand-snapchat,
+    'tiktok': $brand-tiktok,
+    'twitter': $brand-twitter,
+    'youtube': $brand-youtube
+);
+
+// Utility Colors
+$warning-color: #d19302;
+$danger-color: #C52F00;
+$success-color: #1AA179;
+$info-color: #6EC6F7;
+
+$text-default: #333;
+$text-inverted: #FEFEFE;
+
+$primary-brand-color: #28587B; // For conferences
+$primary-accent-color: #718F9D;
+$secondary-brand-color: #74226C; // For markets
+$secondary-accent-color: #74226C;
+$tertiary-brand-color: #F9C80E; // For job fairs
+$tertiary-accent-color: #0D5AFF;
