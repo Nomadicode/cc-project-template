@@ -8,7 +8,11 @@ import i18n from "./locales"
 {%- endif %}
 import router from './router'
 import store from './store'
-import api from './api'
+{%- if cookiecutter.use_rest == 'y' %}
+import rest from './api/rest'
+{%- elif cookiecutter.use_graphql == 'y' %}
+import apollo from './api/apollo'
+{%- endif %}
 
 import './assets/scss/app.scss'
 
