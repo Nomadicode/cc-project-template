@@ -4,7 +4,7 @@ services:
   server:
     build:
       context: .
-      dockerfile: ./ops/server/Dockerfile
+      dockerfile: ./ops/server/prod/Dockerfile
     volumes:
       - ./server:/app
     ports:

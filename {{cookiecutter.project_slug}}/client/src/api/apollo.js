@@ -1,18 +1,17 @@
-import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client/core'
-
-// HTTP connection to the API
-const httpLink = createHttpLink({
-  // You should use an absolute URL here
-  uri: `${process.env.VUE_APP_API_DOMAIN}/graphql`,
-})
+import { ApolloClient, InMemoryCache } from '@apollo/client/core'
+import { createApolloProvider } from '@vue/apollo-option'
 
 // Cache implementation
 const cache = new InMemoryCache()
 
 // Create the apollo client
 const apolloClient = new ApolloClient({
-  link: httpLink,
   cache,
+  uri: `${process.env.VUE_APP_API_DOMAIN}/graphql`
 })
 
-return apolloClient
+const apolloProvider = createApolloProvider({
+  defaultClient: apolloClient
+})
+
+export default apolloProvider

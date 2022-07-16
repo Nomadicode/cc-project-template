@@ -11,6 +11,7 @@
   "dependencies": {
     {%- if cookiecutter.use_graphql == 'y' %}
     "@apollo/client": "^3.6.9",
+    "@vue/apollo-option": "4.0.0-alpha.18",
     "graphql": "16.5.0",
     "graphql-tag": "2.12.6",
     {%- endif %}

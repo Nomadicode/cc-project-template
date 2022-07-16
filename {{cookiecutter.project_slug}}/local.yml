@@ -18,7 +18,7 @@ services:
   server:
     build:
       context: .
-      dockerfile: ./ops/server/Dockerfile
+      dockerfile: ./ops/server/local/Dockerfile
     depends_on:
       - database
     volumes:
@@ -28,7 +28,7 @@ services:
     command: /start.sh
     entrypoint: /entrypoint.sh
     restart: on-failure
-    env_file: ./ops/server/.env
+    env_file: ./ops/server/local/.env
 
   database:
     image: postgres:14-alpine

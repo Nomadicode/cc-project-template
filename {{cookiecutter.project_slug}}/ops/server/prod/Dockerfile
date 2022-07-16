@@ -19,16 +19,17 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 
 WORKDIR /app
 
-COPY ./server/requirements .
-RUN pip install -r requirements.txt
+COPY ./server/requirements ./requirements
+RUN pip install --no-cache-dir -r ./requirements/production.txt \
+    && rm -rf ./requirements/
 
 ADD ./server /app/
 
-COPY ./ops/server/scripts/entrypoint.sh /entrypoint.sh
+COPY ./ops/server/prod/scripts/entrypoint.sh /entrypoint.sh
 RUN sed -i 's/\r//' /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
-COPY ./ops/server/scripts/start.sh /start.sh
+COPY ./ops/server/prod/scripts/start.sh /start.sh
 RUN sed -i 's/\r//' /start.sh
 RUN chmod +x /start.sh
 

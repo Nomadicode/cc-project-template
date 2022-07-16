@@ -11,7 +11,7 @@ import store from './store'
 {%- if cookiecutter.use_rest == 'y' %}
 import rest from './api/rest'
 {%- elif cookiecutter.use_graphql == 'y' %}
-import apollo from './api/apollo'
+import apolloProvider from './api/apollo'
 {%- endif %}
 
 import './assets/scss/app.scss'
@@ -26,7 +26,11 @@ app.use(i18n)
 {%- endif %}
 app.use(store)
 app.use(router)
+{%- if cookiecutter.use_rest == 'y' %}
 app.use(VueAxios, api)
+{%- elif cookiecutter.use_graphql == 'y' %}
+app.use(apolloProvider)
+{%- endif %}
 app.provide('http', app.config.globalProperties.axios)
 
 app.mount('#app')

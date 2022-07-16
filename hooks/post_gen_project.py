@@ -23,29 +23,28 @@ def remove_server_files():
     shutil.rmtree("ops/database")
 
 def remove_rest_files():
-    root_path = "server/apps/users/"
     file_names = [
-        "tests/test_user_rest.py",
-        "routes.py",
-        "serializers.py",
-        "views.py"
+        "server/apps/users/tests/test_user_rest.py",
+        "server/apps/users/routes.py",
+        "server/apps/users/serializers.py",
+        "server/apps/users/views.py",
+        "client/src/api/rest.js"
     ]
 
     for filename in file_names:
-        os.remove(root_path + filename)
+        os.remove(filename)
 
 def remove_graphql_files():
-    root_path = "server/apps/users/"
     file_names = [
-        "tests/test_user_graphql.py",
-        "mutations.py",
-        "schema.py"
+        "server/apps/users/tests/test_user_graphql.py",
+        "server/apps/users/mutations.py",
+        "server/apps/users/schema.py",
+        "server/config/schema.py",
+        "client/src/api/apollo.js"
     ]
 
     for filename in file_names:
-        os.remove(root_path + filename)
-
-    os.remove("server/config/schema.py")
+        os.remove(filename)
 
 def main():
     if "{{ cookiecutter.include_client }}".lower() == "n":
