@@ -47,17 +47,17 @@ def remove_graphql_files():
         os.remove(filename)
 
 def main():
+    if "{{ cookiecutter.use_graphql }}".lower() == 'n':
+        remove_graphql_files()
+
+    if "{{ cookiecutter.use_rest }}".lower() == 'n':
+        remove_rest_files()
+    
     if "{{ cookiecutter.include_client }}".lower() == "n":
         remove_client_files()
 
     if "{{ cookiecutter.include_server }}".lower() == "n":
         remove_server_files()
-
-    if "{{ cookiecutter.use_rest }}".lower() == 'n':
-        remove_rest_files()
-
-    if "{{ cookiecutter.use_graphql }}".lower() == 'n':
-        remove_graphql_files()
 
     if "{{ cookiecutter.use_i18n }}".lower() == 'n':
         remove_i18n_files()
