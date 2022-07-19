@@ -1,6 +1,5 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import VueAxios from 'vue-axios'
 import mitt from 'mitt'
 
 {%- if cookiecutter.use_i18n == 'y' %}
@@ -9,6 +8,7 @@ import i18n from "./locales"
 import router from './router'
 import store from './store'
 {%- if cookiecutter.use_rest == 'y' %}
+import VueAxios from 'vue-axios'
 import rest from './api/rest'
 {%- elif cookiecutter.use_graphql == 'y' %}
 import apolloProvider from './api/apollo'
