@@ -16,10 +16,9 @@ import apolloProvider from './api/apollo'
 
 import './assets/scss/app.scss'
 
+const app = createApp(App)
 const emitter = mitt()
 app.config.globalProperties.emitter = emitter
-
-const app = createApp(App)
 
 {%- if cookiecutter.use_i18n == 'y' %}
 app.use(i18n)

@@ -8,7 +8,7 @@ services:
       dockerfile: ./ops/client/prod/Dockerfile
     ports:
       - "8080:8080"
-    env_file: ./ops/client/.env
+    env_file: ./ops/client/prod/.env
   {%- endif %}
 
   {%- if cookiecutter.include_server == 'y' %}

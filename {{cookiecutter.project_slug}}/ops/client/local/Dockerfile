@@ -1,17 +1,20 @@
-FROM node:carbon-slim
+FROM node:14-buster-slim
 
 RUN apt-get -y update \
     && apt-get install -y git
+RUN mkdir /app
 
-RUN npm install -g @vue/cli yarn
+ENV NODE_ENV=development
+
+RUN npm install -g @vue/cli
 
 WORKDIR /app
+COPY package*.json ./
 
-ADD ./client /app/
+ADD ./client ./
 
-RUN yarn install
+RUN npm install -y
+
 EXPOSE 8080
 
-USER node
-
-CMD ["yarn", "serve"]
+CMD ["npm", "run", "serve"]
