@@ -26,7 +26,7 @@ app.use(i18n)
 app.use(store)
 app.use(router)
 {%- if cookiecutter.use_rest == 'y' %}
-app.use(VueAxios, api)
+app.use(VueAxios, rest)
 {%- elif cookiecutter.use_graphql == 'y' %}
 app.use(apolloProvider)
 {%- endif %}
