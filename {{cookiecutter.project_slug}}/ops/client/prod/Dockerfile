@@ -1,22 +1,22 @@
-FROM node:lts-alpine
+# build stage
+FROM node:14-buster-slim as build-stage
 
-# install simple http server for serving static content
-RUN npm install -g http-server
-
-# make the 'app' folder the current working directory
+ENV NODE_ENV=development
+RUN mkdir /app
 WORKDIR /app
 
-# copy both 'package.json' and 'package-lock.json' (if available)
-COPY package*.json ./
+RUN npm install -g @vue/cli
+COPY ./client/package*.json /app/
 
-# install project dependencies
 RUN npm install
 
-# copy project files and folders to the current working directory (i.e. 'app' folder)
 COPY ./client /app/
 
-# build app for production with minification
 RUN npm run build
 
-EXPOSE 8080
-CMD [ "http-server", "dist" ]
+# production stage
+FROM nginx:stable-alpine as production-stage
+ENV NODE_ENV=production
+COPY --from=build-stage /app/dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

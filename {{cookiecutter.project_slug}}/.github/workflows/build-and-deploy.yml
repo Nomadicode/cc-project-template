@@ -1,0 +1,74 @@
+name: Build
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+      
+env:
+  CLIENT_IMAGE: "{{ cookiecutter.project_slug }}_client"
+  SERVER_IMAGE: "{{ cookiecutter.project_slug }}_server"
+  REGISTRY: registry.digitalocean.com/ncr
+
+jobs:
+  run-python-tests:
+    name: Run Python Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Server Tests
+        run: make test-server
+  
+  run-js-tests:
+    name: Run JavaScript Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Client tests
+        run: make test-client
+        
+  build-push-client:
+    name: Build & push client images
+    runs-on: ubuntu-latest
+    needs:
+      - run-js-tests
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Build image
+        run: docker build . --file ./ops/client/prod/Dockerfile --tag $CLIENT_IMAGE
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      - name: Push to DO registry
+        run: |
+          doctl registry login
+          docker tag $CLIENT_IMAGE $REGISTRY/$CLIENT_IMAGE
+          docker push $REGISTRY/$CLIENT_IMAGE
+
+  build-push-server:
+    name: Build & push server images
+    runs-on: ubuntu-latest
+    needs:
+      - run-python-tests
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Build image
+        run: docker build . --file ./ops/server/prod/Dockerfile --tag $SERVER_IMAGE
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      - name: Push to DO registry
+        run: |
+          doctl registry login
+          docker tag $SERVER_IMAGE $REGISTRY/$SERVER_IMAGE
+          docker push $REGISTRY/$SERVER_IMAGE

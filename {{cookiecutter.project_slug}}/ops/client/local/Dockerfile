@@ -9,7 +9,7 @@ ENV NODE_ENV=development
 RUN npm install -g @vue/cli
 
 WORKDIR /app
-COPY package*.json ./
+COPY ./client/package*.json ./
 
 ADD ./client ./
 
