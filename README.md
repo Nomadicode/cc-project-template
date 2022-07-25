@@ -26,8 +26,8 @@ The server is build on the vue framework and provides:
 All CI/CD data is configure out of the box, you just need to handle the initial configuration for deploying
 
 ## CI/CD setup
-1. Log into the provider and set up a server
-2. set up docker on the server
-3. pull the repo into the new server
-4. run docker-compose -f production.yml up -d
+1. Log into Digital Ocean
+2. set up new app from DO registry
+3. Assign a static IP
+4. point a URL
 5. Ready!
