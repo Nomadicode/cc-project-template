@@ -30,5 +30,6 @@
         "*.vue",
         "*.html",
         "*static"
-    ]
+    ],
+    "_secret_DO_GH": "${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}"
 }
