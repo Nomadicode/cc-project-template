@@ -8,11 +8,18 @@ on:
     branches:
       - main
       - develop
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Image version'
+        required: true
       
 env:
-  CLIENT_IMAGE: "{{ cookiecutter.project_slug }}_client"
-  SERVER_IMAGE: "{{ cookiecutter.project_slug }}_server"
-  REGISTRY: registry.digitalocean.com/ncr
+  REGISTRY: "registry.digitalocean.com/ncr"
+  CLIENT_IMAGE_NAME: "{{ cookiecutter.project_slug }}_client"
+  CLIENT_DOCKERFILE: "./ops/client/prod/Dockerfile"
+  SERVER_IMAGE_NAME: "{{ cookiecutter.project_slug }}_server"
+  SERVER_DOCKERFILE: "./ops/server/prod/Dockerfile"
 
 jobs:
   run-python-tests:
@@ -32,43 +39,53 @@ jobs:
         uses: actions/checkout@v2
       - name: Client tests
         run: make test-client
-        
-  build-push-client:
-    name: Build & push client images
+  
+  build-and-push:
+    name: Build & Push Images
     runs-on: ubuntu-latest
+    if: success()
     needs:
       - run-js-tests
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Build image
-        run: docker build . --file ./ops/client/prod/Dockerfile --tag $CLIENT_IMAGE
-      - name: Install doctl
-        uses: digitalocean/action-doctl@v2
-        with:
-          token: "{{ cookiecutter._secret_DO_GH }}"
-      - name: Push to DO registry
-        run: |
-          doctl registry login
-          docker tag $CLIENT_IMAGE $REGISTRY/$CLIENT_IMAGE
-          docker push $REGISTRY/$CLIENT_IMAGE
-
-  build-push-server:
-    name: Build & push server images
-    runs-on: ubuntu-latest
-    needs:
       - run-python-tests
     steps:
-      - name: Checkout code
+      -
+        name: Checkout code
         uses: actions/checkout@v2
-      - name: Build image
-        run: docker build . --file ./ops/server/prod/Dockerfile --tag $SERVER_IMAGE
+
+      -
+        name: Get branch name
+        id: branch-meta
+        uses: tj-actions/branch-names@v5.4
+
+      -
+        name: Set Outputs
+        id: vars
+        run: |
+          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+
+          if [[ ${{ steps.branch-meta.outputs.current_branch }} == 'main' ]]; then
+            echo "::set-output name=image_type::prd"
+          else
+            echo "::set-output name=image_type::stg"
+          fi
+
+      - 
+        name: Build server container image
+        run: docker build -t {{ '${{ env.REGISTRY }}/${{ env.SERVER_IMAGE_NAME }}:${{ steps.vars.outputs.image_type }}-${{ steps.vars.outputs.sha_short }} -f ${{ env.SERVER_DOCKERFILE }}' }} .
+
+      - name: Build client container image
+        run: docker build -t {{ '${{ env.REGISTRY }}/${{ env.CLIENT_IMAGE_NAME }}:${{ steps.vars.outputs.image_type }}-${{ steps.vars.outputs.sha_short }} -f ${{ env.CLIENT_DOCKERFILE }}' }} .
+
       - name: Install doctl
         uses: digitalocean/action-doctl@v2
         with:
-          token: "{{ cookiecutter._secret_DO_GH }}"
-      - name: Push to DO registry
-        run: |
-          doctl registry login
-          docker tag $SERVER_IMAGE $REGISTRY/$SERVER_IMAGE
-          docker push $REGISTRY/$SERVER_IMAGE
+          token: {{ '${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}' }}
+    
+      - name: Log in to DigitalOcean Container Registry with short-lived credentials
+        run: doctl registry login --expiry-seconds 1200
+
+      - name: Push image to DigitalOcean Container Registry for server
+        run: docker push {{ '${{ env.REGISTRY }}/${{ env.SERVER_IMAGE_NAME }}:${{ steps.vars.outputs.image_type }}-${{ steps.vars.outputs.sha_short }}' }}
+
+      - name: Push image to DigitalOcean Container Registry for client
+        run: docker push {{ '${{ env.REGISTRY }}/${{ env.CLIENT_IMAGE_NAME }}:${{ steps.vars.outputs.image_type }}-${{ steps.vars.outputs.sha_short }}' }}
