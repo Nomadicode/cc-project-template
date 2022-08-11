@@ -78,7 +78,6 @@ jobs:
           else
             echo "::set-output name=image_type::stg"
           fi
-
       {% if cookiecutter.include_server == 'y' %}
       - 
         name: Build server container image
@@ -94,11 +93,10 @@ jobs:
         uses: digitalocean/action-doctl@v2
         with:
           token: {{ '${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}' }}
-    
+
       -
         name: Log in to DigitalOcean Container Registry with short-lived credentials
         run: doctl registry login --expiry-seconds 1200
-
       {% if cookiecutter.include_server == 'y' %}
       -
         name: Push image to DigitalOcean Container Registry for server
