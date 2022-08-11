@@ -1,24 +1,35 @@
 SHELL := /bin/bash
 
+{% if cookiecutter.include_server == 'y' %}
 connect-server:
-	docker-compose -f local.yml run --rm server bash
+	docker-compose run --rm server bash
+{% endif %}
 
+{% if cookiecutter.include_client == 'y' %}
 connect-client:
-	docker-compose -f local.yml run --rm client bash
+	docker-compose run --rm client bash
+{% endif %}
 
+{% if cookiecutter.include_client == 'y' %}
 start-client:
-	docker-compose -f local.yml up client
+	docker-compose up client
+{% endif %}
 
+{% if cookiecutter.include_server == 'y' %}
 start-server:
-	docker-compose -f local.yml up server
+	docker-compose up server
+{% endif %}
 
 start: 
-	docker-compose -f local.yml up
+	docker-compose up
 
+{% if cookiecutter.include_client == 'y' %}
 test-client:
-	docker-compose -f local.yml run --rm client npm run test
+	docker-compose run --rm client npm run test
+{% endif %}
 
+{% if cookiecutter.include_server == 'y' %}
 test-server:
-	docker-compose -f local.yml run --rm server python manage.py test
-
-test: test-client test-server
+	docker-compose run --rm server python manage.py test
+{% endif %}
+test: {% if cookiecutter.include_client == 'y' %}test-client{% endif %} {% if cookiecutter.include_server == 'y' %}test-server{% endif %}
