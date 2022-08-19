@@ -34,5 +34,6 @@ RUN sed -i 's/\r//' /start.sh
 RUN chmod +x /start.sh
 
 WORKDIR /app
-
+EXPOSE 5000
 ENTRYPOINT ["/entrypoint.sh"]
+CMD ["bash", "/start.sh"]
