@@ -46,6 +46,12 @@ def remove_graphql_files():
     for filename in file_names:
         os.remove(filename)
 
+def remove_blog_files():
+    shutil.rmtree("client/src/views/blog")
+
+def remove_ecommerce_files():
+    shutil.rmtree("client/src/views/ecommerce")
+
 def main():
     if "{{ cookiecutter.use_graphql }}".lower() == 'n':
         remove_graphql_files()
@@ -61,6 +67,12 @@ def main():
 
     if "{{ cookiecutter.use_i18n }}".lower() == 'n':
         remove_i18n_files()
+
+    if "{{ cookiecutter.include_blog_stub }}".lower() == 'n':
+        remove_blog_files()
+
+    if "{{ cookiecutter.include_ecommerce_stub }}".lower() == 'n':
+        remove_ecommerce_files()
 
 if __name__ == "__main__":
     main()

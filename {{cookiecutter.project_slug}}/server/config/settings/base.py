@@ -41,7 +41,7 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     'corsheaders',
     {%- if cookiecutter.use_graphql == 'y' %}
-    'graphene_django',
+    'strawberry.django',
     {%- endif %}
     'guardian',
     {%- if cookiecutter.use_rest == 'y' %}

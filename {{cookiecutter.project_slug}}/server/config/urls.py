@@ -2,6 +2,10 @@ from django.conf import settings
 from django.urls import include, path, re_path
 from django.conf.urls.static import static
 from django.contrib import admin
+{%- if cookiecutter.use_graphql == 'y' %}
+from strawberry.django.views import GraphQLView
+from config.schema import schema
+{%- endif %}
 
 API_PREFIX = ""
 
@@ -9,7 +13,7 @@ urlpatterns = [
     re_path(settings.ADMIN_URL, admin.site.urls),
 
     {%- if cookiecutter.use_graphql == 'y' %}
-    path("graphql", csrf_exempt(GraphQLView.as_view(graphiql=True))),
+    path("graphql/", csrf_exempt(GraphQLView.as_view(schema=schema))),
     {%- endif %}
     {%- if cookiecutter.use_rest == 'y' %}
     path(API_PREFIX, include("apps.users.routes")),

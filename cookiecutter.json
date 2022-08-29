@@ -9,6 +9,9 @@
     "include_client": "y",
     "include_server": "y",
     "timezone": "UTC",
+    "include_blog_stub": "n",
+    "include_quote_stub": "n",
+    "include_ecommerce_stub": "n",
     "cloud_provider": [
         "AWS",
         "GCP",
@@ -24,7 +27,6 @@
     ],
     "use_rest": "y",
     "use_graphql": "n",
-    "use_fontawesome": "y",
     "use_i18n": "y",
     "_copy_without_render": [
         "*.vue",
