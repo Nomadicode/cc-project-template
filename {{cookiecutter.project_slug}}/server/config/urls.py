@@ -2,6 +2,7 @@ from django.conf import settings
 from django.urls import include, path, re_path
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.views.decorators.csrf import csrf_exempt
 {%- if cookiecutter.use_graphql == 'y' %}
 from strawberry.django.views import GraphQLView
 from config.schema import schema

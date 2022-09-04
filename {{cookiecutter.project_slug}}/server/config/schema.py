@@ -1,14 +1,18 @@
 import strawberry
 
+from apps.users.schema import Query as UserQuery
+
+from apps.users.mutations import Mutation as UserCreateMutation
+
 @strawberry.type
-class Query:
+class Query(UserQuery):
     @strawberry.field
     def ping(self) -> str:
         return "pong!"
 
 
 @strawberry.type
-class Mutation(UserMutations):
+class Mutation(UserCreateMutation):
     pass
 
-schema = strawberry.Schema()
+schema = strawberry.Schema(query=Query, mutation=Mutation)

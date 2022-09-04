@@ -9,20 +9,14 @@
     "include_client": "y",
     "include_server": "y",
     "timezone": "UTC",
-    "include_blog_stub": "n",
-    "include_quote_stub": "n",
-    "include_ecommerce_stub": "n",
     "cloud_provider": [
         "AWS",
         "GCP",
-        "Digital Ocean"
+        "DO"
     ],
     "mail_service": [
         "Mailgun",
-        "Mandrill",
-        "Sendgrid",
         "SendinBlue",
-        "Sparkpost",
         "None"
     ],
     "use_rest": "y",

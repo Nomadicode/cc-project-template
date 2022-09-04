@@ -1,11 +1,11 @@
-import strawberry
 from strawberry import auto
-from typing import List
+from strawberry_django_plus import gql
 
-from . import models
+from apps.users import models
 
-@strawberry.django.type(models.User)
-class User:
+@gql.django.type(models.User)
+class UserType:
     id: auto
-    name: auto
-    
+    first_name: auto
+    last_name: str
+    email: str
