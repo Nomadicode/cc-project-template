@@ -14,6 +14,8 @@ import rest from './api/rest'
 import apolloProvider from './api/apollo'
 {%- endif %}
 
+
+import 'vue3-toastify/dist/index.css'
 import './assets/scss/app.scss'
 
 const app = createApp(App)

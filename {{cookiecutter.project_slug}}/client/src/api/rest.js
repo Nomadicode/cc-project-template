@@ -15,7 +15,7 @@ const api = axios.create({
     baseURL: process.env.VUE_APP_API_ROOT,
     headers: headers,
     transformRequest: [(data) => {
-        data = snakeCaseKeys(data)
+        data = (data instanceof FormData) ? data : snakeCaseKeys(data)
         return data
     }, ...axios.defaults.transformRequest],
     transformResponse: [(data) => {
