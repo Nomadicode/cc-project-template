@@ -1,3 +1,15 @@
-class Messages:
+class Message:
+    ACCOUNT_EXISTS = "An account using that email is already registered"
+    ALREADY_SIGNED_IN = "You are already signed in"
+    AUTHENTICATION_FAILED = "The email and password combination is incorrect"
+    FIELD_MISSING = "Required fields are missing from the request"
+    LOGIN_REQUIRED = "You must be logged in to access this resource"
+    NOT_AUTHORIZED = "You are not authorized to access this resource"
+    USER_DOES_NOT_EXIST = "No account found matching the provided email"
+    TOKEN_INVALID = "The provided token and email combination is invalid or expired"
+    NOT_FOUND = "No {} found with identifier {}"
     USER_EMAIL_ALREADY_EXISTS = "A user already exists with that email"
     USER_NOT_FOUND = "No user found with the provided id"
+    RESOURCE_DESTROYED = "{} with id {} was destroyed"
+    PASSWORD_MESSAGE_SENT = "Password reset email sent"
+    PASSWORD_RESET_SUCCESS = "Password successfully reset"

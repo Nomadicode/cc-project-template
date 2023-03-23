@@ -1,12 +1,17 @@
-from django.urls import include, re_path
-
-from rest_framework import routers
+from django.urls import path
 
 from apps.users.views import UserViewSet
 
-router = routers.SimpleRouter()
-router.register('users', UserViewSet)
-
 urlpatterns = [
-    re_path(r'', include(router.urls))
+    path('users/password/', UserViewSet.as_view({
+        'put': 'update_password'
+    })),
+    path('users/<slug:username>/', UserViewSet.as_view({
+        'get': 'retrieve',
+        'put': 'update',
+        'delete': 'destroy'
+    })),
+    path('users/', UserViewSet.as_view({
+        'get': 'list'
+    }))
 ]
