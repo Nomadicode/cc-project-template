@@ -51,6 +51,7 @@ THIRD_PARTY_APPS = [
 ]
 
 APPLICATION_APPS = [
+    "apps.auth.apps.AuthenticationConfig",
     "apps.users.apps.UsersConfig",
 ]
 
