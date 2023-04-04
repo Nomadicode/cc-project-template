@@ -18,13 +18,15 @@
     "axios": "^0.26.1",
     "core-js": "^3.8.3",
     "mitt": "^3.0.0",
+    "primeflex": "^3.3.0",
+    "primeicons": "^6.0.1",
+    "primevue": "^3.17.0",
     "vue": "^3.2.13",
     "vue-axios": "^3.4.1",
     {%- if cookiecutter.use_i18n == 'y' %}
     "vue-i18n": "^9.1.10",
     {%- endif %}
     "vue-router": "^4.0.3",
-    "vue3-toastify": "^0.1.5",
     "vuex": "^4.0.0",
     "vuex-persistedstate": "^4.1.0"
   },

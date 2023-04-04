@@ -14,8 +14,13 @@ import rest from './api/rest'
 import apolloProvider from './api/apollo'
 {%- endif %}
 
+import PrimeVue from 'primevue/config'
+import ToastService from 'primevue/toastservice'
 
-import 'vue3-toastify/dist/index.css'
+import 'primeflex/primeflex.css'
+import 'primevue/resources/primevue.min.css';
+import "primevue/resources/themes/lara-light-blue/theme.css"
+import 'primeicons/primeicons.css';
 import './assets/scss/app.scss'
 
 const app = createApp(App)
@@ -32,6 +37,10 @@ app.use(VueAxios, rest)
 {%- elif cookiecutter.use_graphql == 'y' %}
 app.use(apolloProvider)
 {%- endif %}
+
+app.use(PrimeVue)
+app.use(ToastService)
+
 app.provide('http', app.config.globalProperties.axios)
 
 app.mount('#app')

@@ -29,7 +29,7 @@ def ApiResponse(response_type, data=None, message=None):
         response_status = 'Resource Created'
         response_status_code = status.HTTP_201_CREATED
     if response_type == ResponseType.DESTROYED:
-        response_status = 'Resource Created'
+        response_status = 'Resource Destroyed'
         response_status_code = status.HTTP_200_OK
     if response_type == ResponseType.UPDATED:
         response_status = 'Resource Updated'
