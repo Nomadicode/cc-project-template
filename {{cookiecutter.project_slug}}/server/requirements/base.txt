@@ -21,7 +21,7 @@ drf-spectacular==0.22.1  # https://github.com/tfranzel/drf-spectacular
 {%- endif %}
 
 {%- if cookiecutter.use_graphql == 'y' %}
-strawberry-graphql[debug-server]==0.126.2
-strawberry-graphql-django==0.4.0
-strawberry-django-plus==1.25.1
+graphene==3.2.2
+graphene-django==3.0.0
+django-graphql-jwt==0.3.4
 {%- endif %}

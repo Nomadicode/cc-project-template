@@ -1,18 +1,16 @@
-import strawberry
+import graphene
 
 from apps.users.schema import Query as UserQuery
 
-from apps.users.mutations import Mutation as UserCreateMutation
-
-@strawberry.type
-class Query(UserQuery):
-    @strawberry.field
-    def ping(self) -> str:
-        return "pong!"
+from apps.auth.schema import Query as AuthQuery
+from apps.auth.mutations import AuthMutation
 
 
-@strawberry.type
-class Mutation(UserCreateMutation):
+class RootQuery(graphene.ObjectType, AuthQuery, UserQuery):
     pass
 
-schema = strawberry.Schema(query=Query, mutation=Mutation)
+
+class Mutations(AuthMutation, graphene.ObjectType):
+    pass
+
+schema = graphene.Schema(query=RootQuery, mutation=Mutations)

@@ -41,7 +41,10 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     'corsheaders',
     {%- if cookiecutter.use_graphql == 'y' %}
-    'strawberry.django',
+    'graphene_django',
+    'graphql_jwt.refresh_token.apps.RefreshTokenConfig',
+    'graphql_auth',
+    'django_filters',
     {%- endif %}
     'guardian',
     {%- if cookiecutter.use_rest == 'y' %}
@@ -137,6 +140,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # AUTHENTICATION CONFIGURATION
 # ------------------------------------------------------------------------------
 AUTHENTICATION_BACKENDS = [
+    "graphql_auth.backends.GraphQLAuthBackend",
     'django.contrib.auth.backends.ModelBackend',
     'guardian.backends.ObjectPermissionBackend',
 ]
@@ -194,6 +198,9 @@ REST_FRAMEWORK = {
 
 {%- if cookiecutter.use_graphql == 'y' %}
 GRAPHENE = {
-    "SCHEMA": "config.schema.schema"
+    "SCHEMA": "config.schema.schema",
+    "MIDDLEWARE": [
+        "graphql_jwt.middleware.JSONWebTokenMiddleware",
+    ]
 }
 {%- endif %}
