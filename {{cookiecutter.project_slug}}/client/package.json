@@ -10,24 +10,24 @@
   },
   "dependencies": {
     {%- if cookiecutter.use_graphql == 'y' %}
-    "@apollo/client": "^3.6.9",
-    "@vue/apollo-option": "4.0.0-alpha.18",
-    "graphql": "16.5.0",
+    "@apollo/client": "^3.7.11",
+    "@vue/apollo-option": "4.0.0-beta.4",
+    "graphql": "16.6.0",
     "graphql-tag": "2.12.6",
     {%- endif %}
-    "axios": "^0.26.1",
+    "axios": "^1.3.5",
     "core-js": "^3.8.3",
     "mitt": "^3.0.0",
     "primeflex": "^3.3.0",
     "primeicons": "^6.0.1",
-    "primevue": "^3.17.0",
+    "primevue": "^3.26.1",
     "vue": "^3.2.13",
-    "vue-axios": "^3.4.1",
+    "vue-axios": "^3.5.2",
     {%- if cookiecutter.use_i18n == 'y' %}
-    "vue-i18n": "^9.1.10",
+    "vue-i18n": "^9.2.2",
     {%- endif %}
-    "vue-router": "^4.0.3",
-    "vuex": "^4.0.0",
+    "vue-router": "^4.1.6",
+    "vuex": "^4.1.0",
     "vuex-persistedstate": "^4.1.0"
   },
   "devDependencies": {

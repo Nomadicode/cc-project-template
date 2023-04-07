@@ -1,75 +1,94 @@
-@import "colors";
+:root {
+    --font-body-sm: 12px;
+    --font-body-md: 14px;
+    --font-body-lg: 16px;
+    --font-body-xl: 18px;
 
-body {
-    font-size: 12px;
-    color: $text-default;
+    --font-header-xs: 16px;
+    --font-header-sm: 18px;
+    --font-header-md: 20px;
+    --font-header-lg: 22px;
+    --font-header-xl: 24px;
 }
 
-.body-xs {
-    font-family: "Karla", sans-serif;
-    font-size: 0.8rem;
-    line-height: 1.2rem;
+body {
+    font-size: 14px;
+    color: var(--color-text-default);
 }
 
 .body-sm {
     font-family: "Karla", sans-serif;
-    font-size: 0.9rem;
+    font-size: 12px;
     line-height: 1.3rem;
 }
 
 .body-md {
     font-family: "Karla", sans-serif;
-    font-size: 1rem;
+    font-size: 14px;
     line-height: 1.4rem;
 }
 
 .body-lg {
     font-family: "Karla", sans-serif;
-    font-size: 1.2rem;
+    font-size: 16px;
     line-height: 1.6rem;
 }
 
 .body-xl {
     font-family: "Karla", sans-serif;
-    font-size: 1.5rem;
+    font-size: 18px;
     line-height: 1.9rem;
 }
 
 .body-link {
     text-decoration: none;
+    color: var(--color-primary);
 }
 
 .heading-xs {
     font-family: "Bodoni Moda", sans-serif;
-    font-size: 1.2rem;
+    font-size: 16px;
     font-weight: 600;
     line-height: 1.5rem;
 }
 .heading-sm {
     font-family: "Bodoni Moda", sans-serif;
-    font-size: 1.4rem;
+    font-size: 18px;
     font-weight: 600;
     line-height: 1.9rem;
 }
 .heading-md {
     font-family: "Bodoni Moda", sans-serif;
-    font-size: 1.6rem;
+    font-size: 20px;
     font-weight: 600;
     line-height: 2rem;
 }
 .heading-lg {
     font-family: "Bodoni Moda", sans-serif;
-    font-size: 2rem;
+    font-size: 22px;
     font-weight: 600;
     line-height: 2.5rem;
 }
 .heading-xl {
     font-family: "Bodoni Moda", sans-serif;
-    font-size: 2.5rem;
+    font-size: 24px;
     font-weight: 600;
     line-height: 3rem;
 }
 
 .heavy {
     font-weight: 700;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.centered {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.underlined {
+    border-bottom: 1px solid var(--color-text-default);
 }

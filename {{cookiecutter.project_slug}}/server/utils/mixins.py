@@ -1,4 +1,5 @@
 import uuid
+import datetime
 
 from collections import OrderedDict
 from guardian.shortcuts import assign_perm
@@ -192,7 +193,7 @@ class CoreViewSet(viewsets.ViewSet):
     def pre_update(self, request, resource):
         return request.data.copy()
 
-    def post_update(self, request, serializer):
+    def post_update(self, instance, request, serializer):
         pass
 
     def set_update_fields(self, request, *args, **kwargs):
@@ -231,8 +232,8 @@ class CoreViewSet(viewsets.ViewSet):
                 }
             )
 
-        serializer.save()
-        self.post_update(request, serializer)
+        instance = serializer.save()
+        self.post_update(instance, request, serializer)
 
         return ApiResponse(
             'updated',

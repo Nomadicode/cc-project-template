@@ -1,62 +1,51 @@
-/* --------------------------------
+/*--------------------------------
 
-Watfurd Web Font
+Nomadicode icon font
 Generated using nucleoapp.com
 
 -------------------------------- */
+
 $icon-font-path: "fonts/icons" !default;
 
 @font-face {
-  font-family: 'Watfurd';
-  src: url('#{$icon-font-path}/watfurd.eot');
-  src: url('#{$icon-font-path}/watfurd.eot') format('embedded-opentype'),
-    url('#{$icon-font-path}/watfurd.woff2') format('woff2'),
-    url('#{$icon-font-path}/watfurd.woff') format('woff'),
-    url('#{$icon-font-path}/watfurd.ttf') format('truetype'),
-    url('#{$icon-font-path}/watfurd.svg') format('svg');
-  font-weight: normal;
-  font-style: normal;
+  font-family: 'Nomadicode';
+  src: url('#{$icon-font-path}/Nomadicode.eot');
+  src: url('#{$icon-font-path}/Nomadicode.eot') format('embedded-opentype'),
+       url('#{$icon-font-path}/Nomadicode.woff2') format('woff2'),
+       url('#{$icon-font-path}/Nomadicode.woff') format('woff'),
+       url('#{$icon-font-path}/Nomadicode.ttf') format('truetype'),
+       url('#{$icon-font-path}/Nomadicode.svg') format('svg');
 }
 
-/*------------------------
-	base class definition
--------------------------*/
-
+/* base class */
 .icon {
   display: inline-block;
-  font: normal normal normal 1em/1 'Watfurd';
+  font: normal normal normal 1em/1 'Nomadicode';
   color: inherit;
   flex-shrink: 0;
-  speak: none;
-  text-transform: none;
-  /* Better Font Rendering */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/*------------------------
-  change icon size
--------------------------*/
-
-/* relative units */
+/* size examples - relative units */
 .icon-sm {
   font-size: 0.8em;
 }
+
 .icon-lg {
   font-size: 1.2em;
 }
-/* absolute units */
+
+/* size examples - absolute units */
 .icon-16 {
   font-size: 16px;
 }
+
 .icon-32 {
   font-size: 32px;
 }
 
-/*------------------------
-  spinning icons
--------------------------*/
-
+/* rotate the icon infinitely */
 .icon-is-spinning {
   animation: icon-spin 1s infinite linear;
 }
@@ -70,10 +59,7 @@ $icon-font-path: "fonts/icons" !default;
   }
 }
 
-/*------------------------
-  rotated/flipped icons
--------------------------*/
-
+/* transform */
 .icon-rotate-90  {
 	transform: rotate(90deg);
 }
@@ -89,74 +75,161 @@ $icon-font-path: "fonts/icons" !default;
 .icon-flip-y {
 	transform: scaleY(-1);
 }
+
 .icon-flip-x {
 	transform: scaleX(-1);
 }
 
-/*------------------------
-	icons
--------------------------*/
+/* icons */
 $icons: (
-  zoom: 'ea02',
-  sort-tool: 'ea03',
-  hide: 'ea04',
-  view: 'ea05',
-  zoom-out: 'ea06',
-  zoom-in: 'ea07',
-  bin: 'ea0a',
-  e-remove: 'ea0b',
-  shopping-bag: 'ea0c',
-  globe: 'ea19',
-  tag-cut: 'ea1a',
-  map-pin: 'ea1b',
-  user: 'ea1c',
-  user-add: 'ea1d',
-  n-edit: 'ea1e',
-  cogwheel: 'ea1f',
-  preferences: 'ea20',
-  menu: 'ea21',
-  clock: 'ea22',
-  calendar-2: 'ea23',
-  refresh: 'ea24',
-  send: 'ea25',
-  email: 'ea26',
-  at-sign-2: 'ea27',
-  presentation: 'ea28',
-  pulse: 'ea29',
-  send-message: 'ea2a',
-  phone: 'ea2b',
-  phone-disabled: 'ea2c',
-  attach: 'ea2d',
-  message: 'ea2e',
-  heart: 'ea2f',
-  heart-filled: 'ea30',
-  url: 'ea31',
-  world: 'ea32',
-  shop: 'ea33',
-  store: 'ea34',
-  megaphone: 'ea35',
-  headset: 'ea36',
-  comments: 'ea37',
-  compass: 'ea38',
-  pin-3: 'ea39',
-  star: 'ea3a',
-  star-filled: 'ea3b',
-  translation: 'ea3c',
-  alarm: 'ea3d',
-  alarm-disable-1: 'ea3e',
-  sound: 'ea3f',
-  volume-mute: 'ea40',
-  soundwave: 'ea41',
-  data-download: 'ea42',
-  launch: 'ea43',
-  file-upload-2: 'ea44',
-  check-single: 'ea45',
-  add: 'ea46',
-  home: 'ea47',
-  arrow-right: 'ea48',
-  arrow-up: 'ea49',
-  arrow-down: 'ea4a',
-  arrow-left: 'ea4b',
+  'zoom': 'ea02',
+  'sort-tool': 'ea03',
+  'hide': 'ea04',
+  'view': 'ea05',
+  'zoom-out': 'ea06',
+  'zoom-in': 'ea07',
+  'bin': 'ea08',
+  'e-remove': 'ea09',
+  'shopping-bag': 'ea0a',
+  'globe': 'ea0b',
+  'tag-cut': 'ea0c',
+  'map-pin': 'ea0d',
+  'user': 'ea0e',
+  'img-rotate-right': 'ea0f',
+  'search-zoom-in': 'ea10',
+  'search-zoom-out': 'ea11',
+  'zoom-1': 'ea12',
+  'btn-enlarge': 'ea13',
+  'sort-tool-1': 'ea14',
+  'filter': 'ea15',
+  'translation': 'ea16',
+  'hide-1': 'ea17',
+  'view-1': 'ea18',
+  'a-search': 'ea19',
+  'folder-search': 'ea1a',
+  'm-search': 'ea1b',
+  'bin-1': 'ea1c',
+  'e-remove-1': 'ea1d',
+  'currency-exchange-2': 'ea1e',
+  'tags-stack': 'ea1f',
+  'shopping-bag-1': 'ea20',
+  'store': 'ea21',
+  'shopping-tag': 'ea22',
+  'shopping-cart': 'ea23',
+  'stock-2': 'ea24',
+  'customer-support': 'ea25',
+  'credit-card': 'ea26',
+  'box-3d-50': 'ea27',
+  'globe-1': 'ea28',
+  'world': 'ea29',
+  'tag-cut-1': 'ea2a',
+  'map-pin-1': 'ea2b',
+  'user-1': 'ea2c',
+  'users-wm': 'ea2d',
+  'n-edit': 'ea2e',
+  'settings-gear': 'ea2f',
+  'settings': 'ea30',
+  'preferences': 'ea31',
+  'menu': 'ea32',
+  'menu-8': 'ea33',
+  'menu-4': 'ea34',
+  'bullet-list-67': 'ea35',
+  'list': 'ea36',
+  'save-to-list': 'ea37',
+  'rotate-right': 'ea38',
+  'clock': 'ea39',
+  'time-alarm': 'ea3a',
+  'calendar-2': 'ea3b',
+  'refresh-01': 'ea3c',
+  'refresh-02': 'ea3d',
+  'cloud-data-sync': 'ea3e',
+  'pin-sync': 'ea3f',
+  'send': 'ea40',
+  'send-message': 'ea41',
+  'mail': 'ea42',
+  'newsletter': 'ea43',
+  'file-edit': 'ea44',
+  'attach': 'ea45',
+  'reply': 'ea46',
+  'reply-all': 'ea47',
+  'at-sign-2': 'ea48',
+  'presentation': 'ea49',
+  'show': 'ea4a',
+  'statistics': 'ea4b',
+  'pulse': 'ea4c',
+  'wifi': 'ea4d',
+  'wifi-off': 'ea4e',
+  'phone': 'ea4f',
+  'phone-call-end': 'ea50',
+  'comments': 'ea51',
+  'flag-points-32': 'ea52',
+  'pen-2': 'ea53',
+  'edit': 'ea54',
+  'megaphone': 'ea55',
+  'favorite': 'ea56',
+  'favorite-1': 'ea57',
+  'link': 'ea58',
+  'shop': 'ea59',
+  'headset': 'ea5a',
+  'compass': 'ea5b',
+  'pin-3': 'ea5c',
+  'star-filled': 'ea5d',
+  'star': 'ea5e',
+  'star-rate-2': 'ea5f',
+  'star-rate-1': 'ea60',
+  'data-upload': 'ea61',
+  'launch': 'ea62',
+  'data-download': 'ea63',
+  'move-layer-down': 'ea64',
+  'bookmarks-2': 'ea65',
+  'bookmarks-1': 'ea66',
+  'alarm': 'ea67',
+  'alarm-disable-1': 'ea68',
+  'soundwave': 'ea69',
+  'volume': 'ea6a',
+  'volume-mute': 'ea6b',
+  'sound': 'ea6c',
+  'voice-recognition': 'ea6d',
+  'music': 'ea6e',
+  'file-upload-2': 'ea6f',
+  'check-single': 'ea70',
+  'check-double': 'ea71',
+  'check-all': 'ea72',
+  'f-check': 'ea73',
+  'f-check-1': 'ea74',
+  'g-check-2': 'ea75',
+  'g-check-1': 'ea76',
+  'receipt-list-43': 'ea77',
+  'e-add': 'ea78',
+  'a-add': 'ea79',
+  'home': 'ea7a',
+  'arrow-left': 'ea7b',
+  'arrow-down': 'ea7c',
+  'arrow-up': 'ea7d',
+  'arrow-right': 'ea7e',
+  'right-arrow': 'ea7f',
+  'down-arrow': 'ea80',
+  'left-arrow': 'ea81',
+  'up-arrow': 'ea82',
+  'move-layer-right': 'ea83',
+  'move-layer-left': 'ea84',
+  'move-layer-up': 'ea85',
+  'move-layer-down-1': 'ea86',
+  'floppy-disk': 'ea87',
+  'take-off': 'ea88',
+  'train': 'ea89',
+  'flight': 'ea8a',
+  'car-front': 'ea8b',
+  'taxi': 'ea8c',
+  'shuttle': 'ea8d',
+  'bus-front-10': 'ea8e',
+  'concierge': 'ea8f',
+  'apartment': 'ea90',
+  'bedroom': 'ea91',
+  'cutlery-77-2': 'ea92',
+  'cutlery-77-1': 'ea93',
+  'paris-tower': 'ea94',
+  'mountain': 'ea95',
 );
 
 @function unicode($str) {
@@ -164,7 +237,7 @@ $icons: (
 }
 
 @each $name, $code in $icons {
-  .icon-#{"" +$name}::before {
+  .icon-#{""+$name}::before {
     content: unicode($code);
   }
 }

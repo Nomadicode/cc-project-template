@@ -1,7 +1,6 @@
 from rest_framework import status
 from rest_framework.response import Response
 
-
 class ResponseType:
     CREATED = 'created'
     RETRIEVED = 'resource-retrieved'
