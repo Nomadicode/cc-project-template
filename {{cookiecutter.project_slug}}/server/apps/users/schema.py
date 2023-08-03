@@ -13,7 +13,7 @@ class UserType(DjangoObjectType):
         exclude_fields = ('password', )
 
 
-class UserQuery(graphene.AbstractType):
+class UserQuery(graphene.ObjectType):
     user = graphene.Field(UserType, jwt=graphene.String(), pk=graphene.ID())
 
     def resolve_user(self, info, **kwargs):

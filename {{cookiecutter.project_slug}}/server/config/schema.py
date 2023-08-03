@@ -1,16 +1,23 @@
 import graphene
 
-from apps.users.schema import Query as UserQuery
-
-from apps.auth.schema import Query as AuthQuery
-from apps.auth.mutations import AuthMutation
+from apps.auth.mutations import AuthMutations
+from apps.users.mutations import UserMutations
 
 
-class RootQuery(graphene.ObjectType, AuthQuery, UserQuery):
-    pass
+class RootQuery(
+    graphene.ObjectType
+):
+    ping = graphene.Field(graphene.String)
+
+    def resolve_ping(_, info):
+        return "pong"
 
 
-class Mutations(AuthMutation, graphene.ObjectType):
+class Mutations(
+    AuthMutations,
+    UserMutations,
+    graphene.ObjectType
+):
     pass
 
 schema = graphene.Schema(query=RootQuery, mutation=Mutations)

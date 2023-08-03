@@ -22,6 +22,7 @@
     "use_rest": "y",
     "use_graphql": "n",
     "use_i18n": "y",
+	"use_keycloak": "y",
     "_copy_without_render": [
         "*.vue",
         "*.html",

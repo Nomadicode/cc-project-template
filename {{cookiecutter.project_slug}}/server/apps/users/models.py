@@ -40,6 +40,11 @@ class User(AbstractBaseUser, PermissionsMixin, UUIDMixin, TimestampMixin):
     email = models.CharField(max_length=512, unique=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
+    
+	{%- if cookiecutter.use_keycloak == 'y' %}
+    keycloak_id = models.UUIDField(null=True, blank=True)
+    realm = models.CharField(max_length=64, null=True, blank=True)
+	{%- endif %}
 
     objects = UserManager()
 

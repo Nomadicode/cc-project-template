@@ -46,6 +46,9 @@ THIRD_PARTY_APPS = [
     'graphql_auth',
     'django_filters',
     {%- endif %}
+    {%- if cookiecutter.use_keycloak == 'y' %}
+    'def_keycloak_auth',
+    {%- endif %}
     'guardian',
     {%- if cookiecutter.use_rest == 'y' %}
     'rest_framework',
@@ -140,7 +143,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # AUTHENTICATION CONFIGURATION
 # ------------------------------------------------------------------------------
 AUTHENTICATION_BACKENDS = [
+    {%- if cookiecutter.use_graphql == 'y' %}
     "graphql_auth.backends.GraphQLAuthBackend",
+    {%- endif %}
     'django.contrib.auth.backends.ModelBackend',
     'guardian.backends.ObjectPermissionBackend',
 ]
@@ -202,5 +207,34 @@ GRAPHENE = {
     "MIDDLEWARE": [
         "graphql_jwt.middleware.JSONWebTokenMiddleware",
     ]
+}
+{%- endif %}
+
+{%- if cookiecutter.use_keycloak == 'y' %}
+KEYCLOAK_EXEMPT_URIS = []
+
+KEYCLOAK_SERVER_URL = os.environ.get("KEYCLOAK_SERVER_URL", 'https://auth.nomadicode.com')
+KEYCLOAK_REALM = os.environ.get("KEYCLOAK_REALM", {{ cookiecutter.project_slug }})
+KEYCLOAK_CLIENT_ID = os.environ.get("KEYCLOAK_CLIENT_ID")
+KEYCLOAK_CLIENT_SECRET_KEY = os.environ.get("KEYCLOAK_CLIENT_SECRET_KEY")
+
+KEYCLOAK_CONFIG = {
+    'KEYCLOAK_SERVER_URL': KEYCLOAK_SERVER_URL.strip('/'),
+    'KEYCLOAK_REALM': KEYCLOAK_REALM,
+    'KEYCLOAK_CLIENT_ID': KEYCLOAK_CLIENT_ID,
+    'KEYCLOAK_CLIENT_SECRET_KEY': KEYCLOAK_CLIENT_SECRET_KEY,
+}
+
+REST_FRAMEWORK['DEFAULT_AUTHENTICATION_CLASSES'] = [
+    'drf_keycloak_auth.authentication.KeycloakAuthentication',
+]
+
+DRF_KEYCLOAK_AUTH = {
+    'KEYCLOAK_SERVER_URL': KEYCLOAK_SERVER_URL,
+    'KEYCLOAK_REALM': KEYCLOAK_REALM,
+    'KEYCLOAK_CLIENT_ID': KEYCLOAK_CLIENT_ID,
+    'KEYCLOAK_CLIENT_SECRET_KEY': KEYCLOAK_CLIENT_SECRET_KEY,
+    'KEYCLOAK_MANAGE_LOCAL_USER': True,
+    'KEYCLOAK_DJANGO_USER_UUID_FIELD': "keycloak_id"
 }
 {%- endif %}

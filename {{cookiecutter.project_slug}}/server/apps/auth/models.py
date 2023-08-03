@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 
 from utils.crypto import generate_reset_token
 
-from apps.users.models import User
+User = get_user_model()
 
 
 # Create your models here.
